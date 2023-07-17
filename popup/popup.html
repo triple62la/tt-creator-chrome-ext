@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>ТТCreator</title>
+        <link rel="stylesheet" href="./popup.css">
+    </head>
+    <body class="c_body c_body_theme_dark">
+        <header class="c_header">
+            <h1 class="c_header"> Trouble Ticket Creator</h1>
+        </header>
+        <main class="c_page">
+            <section class="c_create-ticket c_create-ticket_theme_dark">
+                <div class="c_template">
+                    <label  class="c_label c_label_theme_dark">Шаблон</label>
+                    <input list="template-names" class="c_template__name c_template__name_theme_dark">
+                    <datalist id="template-names"></datalist>
+                    <input  class="c_template__input c_template__input_theme_dark">
+                    <button class="c_template__save-btn"></button>
+                </div>
+                <div class="c_comment">
+                    <label class="c_label c_label_theme_dark">Комментарий</label>
+                    <input class="c_comment__input c_comment__input_theme_dark" >
+                </div>
+                <button class="c_create-ticket__button">Создать</button>
+            </section>
+            <section class="c_solution c_solution_theme_dark">
+                <div class="c_damage-type">
+                    <label for="damage-types" class="c_label c_label_theme_dark">Вид повреждения</label>
+                    <!--        <p>-->
+                    <!--          <span class="timer__hours">&#45;&#45;</span>:<span class="timer__minutes">&#45;&#45;</span>:<span class="timer__seconds">&#45;&#45;</span>-->
+                    <!--        </p>-->
+                    <select class="c_damage-type__list" name="" id="damage-types">
+                        <option value="1">Консульт. инст на выезде</option>
+                        <option value="2">Консульт. инст(первичное подкл)</option>
+                        <option value="3">Обращение перс. менеджера</option>
+                        <option value="4">Консультация сотрудника СБС</option>
+                    </select>
+                </div>
+                <div class="c_delay">
+                    <label class="c_label c_label_theme_dark" for="delay-input">Отложить решение</label>
+                    <input class="c_delay__input c_delay__input_theme_dark" type="text" name="" id="delay-input" list="delay-list">
+                    <datalist id="delay-list">
+                        <option value="0min"></option>
+                        <option value="1min"></option>
+                        <option value="2min"></option>
+                        <option value="5min"></option>
+                        <option value="10min"></option>
+                        <option value="30min"></option>
+                        <option value="60min"></option>
+                    </datalist>
+                </div>
+                <p class="c_solution__timer"></p>
+                <button class="c_solution__finish-btn">Решение</button>
+            </section>
+            <section class="c_results">
+                <p class="c_results__text"> <span class="c_results__ticket_number"> </span></p>
+                <button class="c_results__reset-btn" type="button">Сбросить</button>
+            </section>
+        </main>
+        <footer class="c_footer">
+
+        </footer>
+        <script src="./popup.js"></script>
+    </body>
+</html>
+
+

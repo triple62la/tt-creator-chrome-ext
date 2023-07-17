@@ -1,0 +1,60 @@
+
+.replaced-container{
+    background-color: #303030;
+    color: white;
+    max-width: 250px;
+    height: 64px;
+    box-shadow: 1px 0 5px white;
+    padding: 5px;
+    display: grid;
+    grid-template-columns: repeat(2, max-content);
+    grid-column-gap: 40px;
+    cursor: pointer;
+
+}
+.timer{
+    margin: 0;
+}
+
+.status{
+    display: flex;
+    flex-direction: column;
+
+}
+.status__ticket{
+    margin: 0;
+}
+.status__task-progress{
+    display: flex;
+    justify-content: space-between;
+    
+}
+.status__lamp-panel{
+    display: flex;
+    align-items: center;
+
+}
+.status__progress-lamp{
+    margin: 0;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    box-shadow: 1px 0 5px white;
+    background: rgb(242,242,246);
+    background: radial-gradient(circle, rgba(242,242,246,1) 6%, rgba(167,175,165,1) 47%, rgba(15,16,17,1) 91%);
+}
+
+.status__progress-lamp_success{
+    background: rgb(242,242,246);
+    background: radial-gradient(circle, rgba(242,242,246,1) 6%, rgba(51,221,11,1) 47%, rgba(15,16,17,1) 91%);
+}
+.status__progress-lamp_failed{
+    background: rgb(242,242,246);
+    background: radial-gradient(circle, rgba(242,242,246,1) 6%, rgba(227,83,73,1) 47%, rgba(15,16,17,1) 100%);
+}
+.status__progress-message{
+    margin: 0;
+    display: inline-block;
+    margin-block-start: 0;
+    margin-block-end:0;
+}
