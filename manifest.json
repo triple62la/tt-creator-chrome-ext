@@ -1,7 +1,7 @@
 {
   "name":"TroubleTicketCreator",
   "description": "Расширение для создания и закрытия шаблонных тикетов в NTTM WiFi HS",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "manifest_version": 3,
   "content_scripts": [
     {
