@@ -28,11 +28,3 @@ class Countdown{
     };
 
 }
-// chrome.runtime.onMessage.addListener(function(message, callback) {
-//     if (message == 'hello') {
-//        console.log(message);
-//
-//     } else if (message == 'goodbye') {
-//         chrome.runtime.Port.disconnect();
-//     }
-// });

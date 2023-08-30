@@ -26,10 +26,14 @@ const taskIsFinished = async () => {
     return ["success", "failed", "error", "cancelled"].includes(status)
 }
 
-let TOKEN = localStorage.getItem("TTMDEV-token").replaceAll('"', '');
+let TOKEN = updateToken()
 
 let currentState = {};
 let stopFlag = false;
+
+function updateToken(){
+    return localStorage.getItem("TTMDEV-token").replaceAll('"', '');
+}
 
 
 currentState = new Proxy(currentState, {
@@ -90,19 +94,7 @@ const insertElems = `<p class="timer">
     <p class="status__progress-message">Ожидание</p>`
 
 
-chrome.storage.onChanged.addListener((changes, namespace) => {
-    // for (let [key, { oldValue, newValue }] of Object.entries(changes)) {
-    //     // console.log(
-    //     //     `Storage key "${key}" in namespace "${namespace}" changed.`,
-    //     //     `Old value was "${oldValue}", new value is "${newValue}".`
-    //     // );
-    //     switch (key){
-    //         case "active": newValue?():rmvCreatorBtn();
-    //         break
-    //     }
-    // }
 
-});
 
 async function request(method, route, payload) {
     const init = {
@@ -290,6 +282,7 @@ async function closeTicket(comment, damageTypeValue){
 }
 
 const showResultPanel = async () => {
+    TOKEN = updateToken()
     if (!document.querySelector(".status__progress-lamp")) { // проверка на то что панель уже добавлена
         const div = document.createElement("div");
         div.classList.add("replaced-container");
@@ -381,7 +374,7 @@ class BtnHandlers {
 
 
         }
-        //TODO Распарсить сценарии развития поднятия stopFlag
+
     }
 
     isEmpty(comment, template) {
