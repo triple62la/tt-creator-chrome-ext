@@ -133,8 +133,9 @@ const lastTaskId = (ticket) => ticket.tasks?.at(-1).id;
 
 
 async function requestTaskId(ticketID) {
-    const ticket = await request("GET", `nttm-web-gateway/api/ticket/with-ola/${ticketID}`);
-    return ticket.tasks?.at(-1).id
+    const response = await request("GET", `nttm-web-gateway/api/ticket/external-ticket/${ticketID}`);
+    // return ticket.tasks?.at(-1).id
+    return Object.keys(response).at(-1)
 }
 
 function diagClosePayload(comment, ruleId){
