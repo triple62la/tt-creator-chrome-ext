@@ -191,7 +191,7 @@ async function diagnosticsClose_v2(comment,ticketID, taskID, ruleId, unitId){
 
 async function assign(ticketID) {
     const taskID = await requestTaskId(ticketID)
-    return await request("POST", `nttm-web-gateway/api/tasks/${ticketID}/${taskID}/assign`, null)
+    return await request("POST", `nttm-web-gateway/api/task/${ticketID}/${taskID}/assign`, null)
 }
 
 async function solutionClose(comment, damageTypeValue,ticketID, taskId){
