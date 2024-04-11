@@ -26,10 +26,14 @@ const taskIsFinished = async () => {
     return ["success", "failed", "error", "cancelled"].includes(status)
 }
 
-let TOKEN = localStorage.getItem("TTMDEV-token").replaceAll('"', '');
+let TOKEN = updateToken()
 
 let currentState = {};
 let stopFlag = false;
+
+function updateToken(){
+    return localStorage.getItem("TTMDEV-token").replaceAll('"', '');
+}
 
 
 currentState = new Proxy(currentState, {
@@ -90,19 +94,7 @@ const insertElems = `<p class="timer">
     <p class="status__progress-message">Ожидание</p>`
 
 
-chrome.storage.onChanged.addListener((changes, namespace) => {
-    // for (let [key, { oldValue, newValue }] of Object.entries(changes)) {
-    //     // console.log(
-    //     //     `Storage key "${key}" in namespace "${namespace}" changed.`,
-    //     //     `Old value was "${oldValue}", new value is "${newValue}".`
-    //     // );
-    //     switch (key){
-    //         case "active": newValue?():rmvCreatorBtn();
-    //         break
-    //     }
-    // }
 
-});
 
 async function request(method, route, payload) {
     const init = {
@@ -141,8 +133,9 @@ const lastTaskId = (ticket) => ticket.tasks?.at(-1).id;
 
 
 async function requestTaskId(ticketID) {
-    const ticket = await request("GET", `nttm-web-gateway/api/ticket/with-ola/${ticketID}`);
-    return ticket.tasks?.at(-1).id
+    const response = await request("GET", `nttm-web-gateway/api/ticket/external-ticket/${ticketID}`);
+    // return ticket.tasks?.at(-1).id
+    return Object.keys(response).at(-1)
 }
 
 function diagClosePayload(comment, ruleId){
@@ -198,7 +191,7 @@ async function diagnosticsClose_v2(comment,ticketID, taskID, ruleId, unitId){
 
 async function assign(ticketID) {
     const taskID = await requestTaskId(ticketID)
-    return await request("POST", `nttm-task-handler/api/tasks/${ticketID}/${taskID}/assign`, null)
+    return await request("POST", `nttm-web-gateway/api/task/${ticketID}/${taskID}/assign`, null)
 }
 
 async function solutionClose(comment, damageTypeValue,ticketID, taskId){
@@ -290,6 +283,7 @@ async function closeTicket(comment, damageTypeValue){
 }
 
 const showResultPanel = async () => {
+    TOKEN = updateToken()
     if (!document.querySelector(".status__progress-lamp")) { // проверка на то что панель уже добавлена
         const div = document.createElement("div");
         div.classList.add("replaced-container");
@@ -381,7 +375,7 @@ class BtnHandlers {
 
 
         }
-        //TODO Распарсить сценарии развития поднятия stopFlag
+
     }
 
     isEmpty(comment, template) {

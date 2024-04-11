@@ -1,11 +1,11 @@
 {
   "name":"TroubleTicketCreator",
   "description": "Расширение для создания и закрытия шаблонных тикетов в NTTM WiFi HS",
-  "version": "1.0.3",
+  "version": "1.0.6",
   "manifest_version": 3,
   "content_scripts": [
     {
-      "matches": ["http://10.42.110.22/*","http://10.28.97.112/*"],
+      "matches": ["http://10.42.110.22/*","http://10.28.97.112/*, http://www.ttm.rt.ru/*"],
       "js": ["content-script.js"],
       "css": ["content.css"]
     }
